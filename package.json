@@ -18,5 +18,6 @@
 		"inquirer": "8.2.0",
 		"tsx": "^3.12.1",
 		"typescript": "^4.9.3"
-	}
+	},
+	"bin": "src/bin/index.js"
 }
