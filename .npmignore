@@ -1,0 +1,8 @@
+# Ignore prettier config
+.prettierignore
+
+# Ignore test files
+test/
+
+# Ignore configs -> Pulled from github
+config/
