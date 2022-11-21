@@ -6,6 +6,7 @@ import { version } from '../../package.json';
 import { createSpinner } from 'nanospinner';
 import { copyFile } from 'fs/promises';
 import { existsSync } from 'fs';
+import chalk from 'chalk';
 
 const program = new Command('jskill');
 
@@ -17,6 +18,7 @@ program.version(version, '-v, --version');
 
 program
 	.command('init')
+	.aliases(['initialize'])
 	.description('Add config files to your project')
 	.addOption(
 		new Option(
@@ -24,8 +26,11 @@ program
 			'Prevent pulling the latest version of the config files',
 		).default(true),
 	)
+	.addOption(
+		new Option('-f, --force', 'Overwrite existing config files').default(false),
+	)
 	.action(async (options) => {
-		const { pull } = options;
+		const { pull, force } = options;
 
 		const s = createSpinner('Pulling config files...').start();
 
@@ -47,8 +52,23 @@ program
 		process.exit(0);
 	});
 
-program.action(() => {
-	console.log('Hi');
-});
+program
+	.addOption(
+		new Option(
+			'-i, --ignore-config',
+			'Ignore config files and use default values.',
+		).default(false),
+	)
+	.addOption(new Option('--disable-cache', 'Cache config files').default(false))
+	.action((options) => {
+		const { ignoreConfig, disableCache } = options;
+
+		const cache = !disableCache;
+
+		console.log(options, cache);
+
+		if (ignoreConfig)
+			console.log(chalk.yellowBright('[!] Ignoring config files.'));
+	});
 
 program.parse(process.argv);
