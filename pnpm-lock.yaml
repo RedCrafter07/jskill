@@ -6,6 +6,7 @@ specifiers:
   chalk: 4.1.2
   commander: ^9.4.1
   inquirer: 8.2.0
+  nanospinner: ^1.1.0
   tsx: ^3.12.1
   typescript: ^4.9.3
 
@@ -15,6 +16,7 @@ dependencies:
   chalk: 4.1.2
   commander: 9.4.1
   inquirer: 8.2.0
+  nanospinner: 1.1.0
   tsx: 3.12.1
   typescript: 4.9.3
 
@@ -497,6 +499,12 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: false
 
+  /nanospinner/1.1.0:
+    resolution: {integrity: sha512-yFvNYMig4AthKYfHFl1sLj7B2nkHL4lzdig4osvl9/LdGbXwrdFRoqBS98gsEsOakr0yH+r5NZ/1Y9gdVB8trA==}
+    dependencies:
+      picocolors: 1.0.0
+    dev: false
+
   /onetime/5.1.2:
     resolution: {integrity: sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==}
     engines: {node: '>=6'}
@@ -522,6 +530,10 @@ packages:
   /os-tmpdir/1.0.2:
     resolution: {integrity: sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /picocolors/1.0.0:
+    resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: false
 
   /readable-stream/3.6.0:
