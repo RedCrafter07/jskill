@@ -94,7 +94,7 @@ program.parse(process.argv);
 
 async function cacheConfig(filePath: string): Promise<file[] | false> {
 	if (!(await existsSync(path.join(cwd, '.jskillignore')))) {
-		console.log(chalk.redBright('[!] Config file do not exist.'));
+		console.log(chalk.redBright('[!] Config file does not exist.'));
 		return false;
 	}
 
