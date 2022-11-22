@@ -22,7 +22,7 @@ export default async function ignoreParser(input: string) {
 		});
 	});
 
-	console.log(ignored);
+	return ignored;
 }
 
 (async () => {
