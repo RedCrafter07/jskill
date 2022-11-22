@@ -6,3 +6,6 @@ test/
 
 # Ignore configs -> Pulled from github
 config/
+
+# Ignore cache files
+.cache/
