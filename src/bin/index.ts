@@ -100,7 +100,7 @@ async function cacheConfig(filePath: string): Promise<file[] | false> {
 
 	const cacheDir = path.join(mainDir, '.cache');
 
-	const config = await readFile(path.join(cwd, '.jskillignore'), 'utf8');
+	const config = await readFile(path.join(cwd, '.jskillignore'), 'utf-8');
 
 	if (!(await existsSync(cacheDir))) {
 		console.log(chalk.yellow("[/] Cache directory doesn't exist."));
@@ -122,7 +122,7 @@ async function cacheConfig(filePath: string): Promise<file[] | false> {
 
 		const cachedConfig = await readFile(
 			path.join(cacheDir, '.jskillignore'),
-			'utf8',
+			'utf-8',
 		);
 
 		if (cachedConfig === config) {
