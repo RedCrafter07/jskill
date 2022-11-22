@@ -2,16 +2,16 @@ import { readdir, readFile } from 'fs/promises';
 import path from 'path';
 import unique from './util/unique';
 
+export interface file {
+	path: string;
+	type: 'file' | 'dir';
+}
+
 export default async function ignoreParser(input: string) {
 	const lines = input
 		.split('\n')
 		.map((line) => line.trim().split('#')[0].trim())
 		.filter((line) => line.length > 0);
-
-	interface file {
-		path: string;
-		type: 'file' | 'dir';
-	}
 
 	const ignored: file[] = [];
 
