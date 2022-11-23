@@ -500,9 +500,11 @@ async function cacheConfig(filePath: string): Promise<file[] | false> {
 			console.log(chalk.green('[+] Config files are the same.'));
 			console.log(chalk.yellow('[/] Not parsing config file again.'));
 
-			return JSON.parse(
-				await readFile(path.join(cacheDir, '.jskillignore.json'), 'utf8'),
-			);
+			const result = (await (
+				await import('../../.cache/.jskillignore.json')
+			).default) as file[];
+
+			return result;
 		}
 
 		console.log(chalk.yellow('[/] Config files are different.'));
