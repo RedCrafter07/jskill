@@ -183,7 +183,7 @@ program
 
 		s.update({ text: 'Finishing...' });
 
-		s.success({ text: 'Done!' });
+		s.success({ text: 'Done! (js files)' });
 
 		console.log(
 			chalk.greenBright(
@@ -242,7 +242,7 @@ program
 
 		const emptyDirs = await checkEmptyDirs(directories);
 
-		purgeSpinner.success({ text: 'Done!' });
+		purgeSpinner.success({ text: 'Done! (empty directory check)' });
 
 		if (emptyDirs.length > 0) {
 			console.log(
