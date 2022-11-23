@@ -192,9 +192,12 @@ program
 		);
 		console.log(
 			chalk.yellow(
-				`[/] Files in green are JavaScript files which can be selected.`,
+				`[/] Files looking like ${chalk.italic.hex('#ffca28')(
+					'[this]',
+				)} files are JavaScript files.`,
 			),
 		);
+		console.log(chalk.gray('='.repeat(42)));
 		console.log(cwd);
 		console.log(tree);
 
@@ -238,7 +241,7 @@ program
 
 		await purgeFiles(remappedFiles, purgeSpinner);
 
-		purgeSpinner.update({ text: 'Checking for empty directories...' });
+		/* purgeSpinner.update({ text: 'Checking for empty directories...' });
 
 		const emptyDirs = await checkEmptyDirs(directories);
 
@@ -272,8 +275,8 @@ program
 
 			await deleteDirs(emptyDirs);
 
-			emptyDirsSpinner.success({ text: 'Done!' });
-		}
+			emptyDirsSpinner.success({ text: 'Done! (empty directory deletion)' });
+		} */
 
 		console.log(chalk.greenBright('[+] Done!'));
 
@@ -389,14 +392,23 @@ async function createTree(files: string[]): Promise<string> {
 	const generateTree = (map: fileMap, newIndent: string = ''): void => {
 		for (const [i, m] of map.entries()) {
 			if (typeof m === 'string') {
-				let color: Chalk;
+				const format = (inp: string) => {
+					let color: Chalk;
 
-				if (m.endsWith('.js')) color = chalk.hex('#ffca28');
-				else if (m.endsWith('.ts')) color = chalk.hex('#0288d1');
-				else color = chalk.gray;
+					if (m.endsWith('.js')) color = chalk.italic.hex('#ffca28');
+					else if (m.endsWith('.ts')) color = chalk.hex('#0288d1');
+					else color = chalk.gray;
+
+					const wrapper = (inp: string) => {
+						if (inp.endsWith('.js')) return `[${inp}]`;
+						else return inp;
+					};
+
+					return color(wrapper(inp));
+				};
 
 				tree.push(
-					`${newIndent}${i === map.length - 1 ? altChar : char} ${color(m)}`,
+					`${newIndent}${i === map.length - 1 ? altChar : char} ${format(m)}`,
 				);
 			} else {
 				tree.push(
