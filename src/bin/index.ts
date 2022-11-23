@@ -14,7 +14,7 @@ import {
 	rm,
 } from 'fs/promises';
 import { existsSync } from 'fs';
-import chalk from 'chalk';
+import chalk, { Chalk } from 'chalk';
 import ignoreParser, { file } from '../lib/ignoreParser';
 import gradient from 'gradient-string';
 import { textSync } from 'figlet';
@@ -389,10 +389,14 @@ async function createTree(files: string[]): Promise<string> {
 	const generateTree = (map: fileMap, newIndent: string = ''): void => {
 		for (const [i, m] of map.entries()) {
 			if (typeof m === 'string') {
+				let color: Chalk;
+
+				if (m.endsWith('.js')) color = chalk.hex('#ffca28');
+				else if (m.endsWith('.ts')) color = chalk.hex('#0288d1');
+				else color = chalk.gray;
+
 				tree.push(
-					`${newIndent}${i === map.length - 1 ? altChar : char} ${
-						m.endsWith('.js') ? chalk.greenBright(m) : chalk.blueBright(m)
-					}`,
+					`${newIndent}${i === map.length - 1 ? altChar : char} ${color(m)}`,
 				);
 			} else {
 				tree.push(
