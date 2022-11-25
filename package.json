@@ -1,6 +1,6 @@
 {
 	"name": "jskill",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A simple CLI tool to remove JavaScript files from your TypeScript project.",
 	"main": "index.js",
 	"scripts": {
